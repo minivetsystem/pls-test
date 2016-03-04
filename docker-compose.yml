@@ -1,0 +1,49 @@
+www:
+  dockerfile: Dockerfile
+  build: .
+  links:
+      - mysql:mysql
+      - postgres:db
+  ports:
+    - "80:80"
+  volumes:
+    - ./:/var/www/html
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    POSTGRES_PASSWORD: password
+
+phpmyadmin:
+  image: nazarpc/phpmyadmin
+  links:
+      - mysql:mysql
+  ports:
+    - "8080:80"
+  environment:
+    UPLOAD_SIZE: 200M
+    MYSQL_ROOT_PASSWORD: password
+
+phppgadmin:
+  image: lunyuan/phppgadmin
+  ports:
+    - "8088:80"
+  links:
+    - postgres:db
+  environment:
+    POSTGRES_PASSWORD: password
+    TIMEZONE: "Europe/Berlin"
+#  volumes:
+#    - /data/docker/phppgadmin:/var/www
+
+mysql:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+  volumes:
+    - /data/docker/mysql:/var/lib/mysql
+
+postgres:
+  image: postgres:9.3
+  environment:
+    POSTGRES_PASSWORD: password
+  volumes:
+    - /data/docker/postgres:/var/lib/postgres
