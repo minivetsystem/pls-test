@@ -2,12 +2,11 @@
 
 ## Start container
 open a terminal
-get root with: sudo -i
 run: docker-compose up
 
 
 ## Stop container
-in a terminal get root and run: docker-compose stop
+run: docker-compose stop
 
 
 # URLs
@@ -18,9 +17,11 @@ phpPgAdmin: http://localhost:8088/phppgadmin
 
 # Credentials
 ## MySQL
+host: mysql
 user: root
 password: password
 
 ## Postgres
+host: db
 user: postgres
 password: password

@@ -40,6 +40,8 @@ mysql:
     MYSQL_ROOT_PASSWORD: password
   volumes:
     - /data/docker/mysql:/var/lib/mysql
+  ports:
+    - "3306:3306"
 
 postgres:
   image: postgres:9.3
@@ -47,3 +49,5 @@ postgres:
     POSTGRES_PASSWORD: password
   volumes:
     - /data/docker/postgres:/var/lib/postgres
+  ports:
+    - "5432:5432"
