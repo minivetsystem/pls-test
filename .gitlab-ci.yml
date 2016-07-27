@@ -1,0 +1,6 @@
+image: ubuntu:16.04
+
+all_tests:
+  script:
+    - echo foo
+    
