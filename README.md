@@ -35,9 +35,10 @@ run:
 # URLs
 
 your project: http://localhost
-phpMyAdmin: http://localhost:8080
-phpPgAdmin: http://localhost:8088/phppgadmin
 
+phpMyAdmin: http://localhost:8080
+
+phpPgAdmin: http://localhost:8088/phppgadmin
 
 # Credentials
 
