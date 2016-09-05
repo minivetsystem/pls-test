@@ -2667,3 +2667,6 @@ Stack trace:
 REQUEST_URI=/index.php?r=site/view&id=1
 HTTP_REFERER=http://localhost/index.php?r=site/index
 ---
+2016/09/05 13:47:42 [warning] [application] Failed to set unsafe attribute "comments" of "Post".
+in /var/www/html/protected/controllers/PostController.php (17)
+in /var/www/html/index.php (13)

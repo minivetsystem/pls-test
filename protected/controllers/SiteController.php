@@ -46,17 +46,6 @@ class SiteController extends Controller
 		}
 	}
 
-	public function actionNewUser()
-	{
-		$username = $_GET["u"];
-		$password = $_GET["p"];
-		if(isset($username))
-		{
-			UserIdentity::createUser($username, $password);
-			echo "user $username created";
-		}
-	}
-
 	/**
 	 * Displays the login page
 	 */
@@ -142,73 +131,5 @@ class SiteController extends Controller
 			}
 			// display the register form
 			$this->render('register',array('model'=>$model));
-	}
-	
-	public function actionTeacherRegister()
-	{
-			
-			$model = new User('register');
-			
-			// if it is ajax validation request
-			if(isset($_POST['ajax']) && $_POST['ajax']==='user-registration-form')
-			{
-					echo CActiveForm::validate($model);
-					Yii::app()->end();
-			}
-
-			// collect user input data
-			if(isset($_POST['User']))
-			{
-				$model->attributes=$_POST['User'];
-				$password = $model->password;
-				if( $model->validate() ){
-					if($model->save()) {
-						
-						$modelLogin = new LoginForm;
-						$modelLogin->username = $model->username;
-						$modelLogin->password = $password;
-						
-						$this->temp->session_id = yii::app()->session->getSessionID();
-						if($modelLogin->validate() && $modelLogin->login()){
-							//redirect the user to page he/she came from
-							
-							$auth = Yii::app()->authManager;
-							$auth->assign("admin", $model->id);
-							$this->putScoreAfterLogin();
-							
-							if(isset($_GET['redirect'])){
-								$this->redirect($_GET['redirect']);
-							} else {
-								$this->redirect(Yii::app()->user->returnUrl);
-							}
-						} else {
-							print_r($modelLogin->getErrors());die;
-						}
-						
-					}
-				} else {
-					//print_r($model->getErrors());die;
-				}      
-			}
-			// display the register form
-			$this->render('register',array('model'=>$model));
-	}
-
-	public function actionUpdatePrev(){
-		/*
-		exit;
-		$partials = Partial::model()->findAll();
-		foreach($partials as $eachPartial){
-			Partial::model()->findByPk($eachPartial->id)->save();
-
-		}
-
-
-		$partials = Exercise::model()->findAll();
-		foreach($partials as $eachPartial){
-			Exercise::model()->findByPk($eachPartial->id)->save();
-
-		}
-		*/
 	}
 }
